@@ -1,0 +1,55 @@
+﻿@using System.IO;
+
+@*This loops through all the bundle files in the folder and renders them into the page*@
+@{
+    var root = ModFrame.theApplicationPath;
+
+    @* Loops over the global header includes *@    
+    @* NOTE: THIS SHOULD ALWAYS BE DONE FIRST AS ITS THE GLOBALS!!*@
+    if (Directory.Exists(System.IO.Path.Combine(root, "modframe", "global", "includes", "header")))
+    {
+        List<string> moduleFiles = Directory.GetFiles(System.IO.Path.Combine(root, "modframe", "global", "includes", "header")).ToList();
+        moduleFiles.Sort();
+        foreach (string file in moduleFiles)
+        {
+            @Html.Partial("~/modframe/global/includes/header/" + System.IO.Path.GetFileName(file));
+        }
+    }
+
+    @* Loops over the module includes *@
+    List<string> moduleBaseFolders = Directory.GetDirectories(System.IO.Path.Combine(root, "Modules")).ToList();
+    moduleBaseFolders.Sort();
+    foreach (string baseFolder in moduleBaseFolders)
+    {
+        List<string> moduleFolder = Directory.GetDirectories(System.IO.Path.Combine(root, baseFolder)).ToList();
+        moduleFolder.Sort();
+        foreach (string folder in moduleFolder)
+        {
+            if (Directory.Exists(folder + "\\includes\\header"))
+            {
+                List<string> moduleFiles = Directory.GetFiles(folder + "\\includes\\header").ToList();
+                moduleFiles.Sort();
+                foreach (string file in moduleFiles)
+                {
+                    @Html.Partial("~/Modules/" + System.IO.Path.GetFileName(baseFolder) + "/" + System.IO.Path.GetFileName(folder) + "/includes/header/" + System.IO.Path.GetFileName(file));
+                }
+            }
+        }
+    }
+
+    @* Loops over the layout includes *@
+    List<string> layoutFolder = Directory.GetDirectories(System.IO.Path.Combine(root, "Layouts")).ToList();
+    layoutFolder.Sort();
+    foreach (string folder in layoutFolder)
+    {
+        if(Directory.Exists(folder + "\\includes\\header"))
+        { 
+            List<string> moduleFiles = Directory.GetFiles( folder + "\\includes\\header").ToList();
+            moduleFiles.Sort();
+            foreach (string file in moduleFiles)
+            {
+                @Html.Partial(string.Format("~/Layouts/{0}/includes/header/{1}", System.IO.Path.GetFileName(folder), System.IO.Path.GetFileName(file)));
+            }
+        }
+    }
+}

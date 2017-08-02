@@ -1,0 +1,1 @@
+﻿/* The default global js goes here*/

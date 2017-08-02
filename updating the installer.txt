@@ -1,0 +1,17 @@
+how to update the installer
+---------------------------
+
+BEFORE HAND:-
+
+make sure you have done the .vstemplate update process if files have been added or removed!!
+
+
+STEPS:-
+
+load the project
+
+in visual studio select the installer project in the explorer window
+
+then right click on it and select build
+
+*NOTE: the installer project runs the build.ps1 script before building the vsix installer*

@@ -1,0 +1,54 @@
+﻿@model int?
+@{  
+    string statusmessage = "";
+    string statusTitle = "";
+
+    //Checks if a status code was supplied
+    if (Model != null)
+    {
+        switch (Model)
+        {
+            case 400:
+                statusTitle = "Bad Request";
+                statusmessage = "The request cannot be fulfilled due to bad syntax.";
+                break;
+
+            case 403:
+                statusTitle = "Forbidden";
+                statusmessage = "The page is forbidden.";
+                break;
+
+            case 404:
+                statusTitle = "Not Found";
+                statusmessage = "The page was not found.";
+                break;
+
+            case 408:
+                statusTitle = "Server Timeout";
+                statusmessage = "The server timed out waiting for the request";
+                break;
+
+            case 500:
+                statusTitle = "Internal Error";
+                statusmessage = "Internal Server Error - server was unable to finish processing the request";
+                break;
+
+            default:
+                statusTitle = "Unexpected Error";
+                statusmessage = "That’s odd... Something we didn't expect happened";
+                break;
+        }
+
+    }
+    else
+    {
+        //If no status code just output a generic 'same as the default in the switch case'
+        statusTitle = "Unexpected Error";
+        statusmessage = "That’s odd... Something we didn't expect happened";
+    }
+}
+<div id="errorBox" class="jumbotron text-center">
+    <div><i class="fa fa-5x fa-frown-o"></i></div>
+    <h1>@statusTitle</h1>
+    <p>@statusmessage</p>
+</div>

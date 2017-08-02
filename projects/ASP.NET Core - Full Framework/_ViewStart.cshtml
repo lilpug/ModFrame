@@ -1,0 +1,13 @@
+﻿@{
+    @* If no master layout has been specified then use the default *@
+    if (Layout == null && ViewData["masterPageLocation"] == null)
+    {
+        ViewData["layoutDefault"] = true;
+        Layout = "~/layouts/Default/views/main.cshtml";
+    }
+    else if(ViewData["masterPageLocation"] != null)
+    {
+    @* use the master layout specified */*@
+        Layout = ViewData["masterPageLocation"].ToString();
+    }
+}

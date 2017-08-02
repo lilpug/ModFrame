@@ -1,7 +1,7 @@
 ## ModFrame
 ModFrame is a modular MVC template for visual studio 2017 which allows easy seperation and management of layouts, modules, styles and scripts.
 
-it is based on ASP.NET Core MVC and has built in support for on the fly minification and concatenation of your CSS and JS files.
+ModFrame is based on ASP.NET Core MVC and has built in support for on the fly minification and concatenation of your CSS and JS files.
 
 Note: The core version is based on .NET Core 1.1 and the Full Framework version is based on .NET Framework 4.7 by default. These can be changed if required.
 

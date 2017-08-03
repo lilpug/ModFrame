@@ -5,7 +5,11 @@ ModFrame is based on ASP.NET Core MVC and has built in support for on the fly mi
 
 Note: The core version is based on .NET Core 1.1 and the Full Framework version is based on .NET Framework 4.7 by default. These can be changed if required.
 
-Documentation for modframe will be released shortly.
+**Note: I am still writing documentation so please bear with me.**
+
+For documentation and information about ModFrame please go to the link below.
+
+https://github.com/lilpug/ModFrame/wiki
 
 ## Copyright and License
 Copyright &copy; 2017 David Whitehead

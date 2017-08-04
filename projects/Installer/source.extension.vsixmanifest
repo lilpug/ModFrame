@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="Installer.Company.ca1f487b-cb1f-4869-a9dd-ce58bd9a2dc6" Version="1.0" Language="en-US" Publisher="David Whitehead" />
+    <Identity Id="Installer.Company.ca1f487b-cb1f-4869-a9dd-ce58bd9a2dc6" Version="1.1" Language="en-US" Publisher="David Whitehead" />
     <DisplayName>ModFrame</DisplayName>
     <Description xml:space="preserve">Installs the ModFrame ASP.NET Core Templates</Description>
     <MoreInfo>https://github.com/lilpug/modframe</MoreInfo>

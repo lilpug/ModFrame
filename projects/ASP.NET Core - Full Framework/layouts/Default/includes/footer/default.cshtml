@@ -1,7 +1,4 @@
-﻿@* This section deals with the layoutDefault includes for the js *@
-@*Note: the viewcontent is only used here for the default because thats all we have access to in the _viewstart.cshtml*@
-    @if (ViewData["layoutDefault"] != null)
-    {
-        <script src="~/components/layouts/Default/js/min.js" asp-append-version="true"></script>
-    }
-@* End of the layoutDefault js includes *@
+﻿@if (ViewData["layoutDefault"] != null)
+{
+    <script src="~/components/layouts/Default/js/min.js" asp-append-version="true"></script>
+}

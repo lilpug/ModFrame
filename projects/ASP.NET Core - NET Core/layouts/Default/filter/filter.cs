@@ -1,13 +1,9 @@
 ﻿using ModFrameBase.Filters;
 
-//Required layout outerlayer
+//Note: This layout is used by default, to change this change the "_ViewStart.cshtml"
 public static partial class ModFrameLayouts
 {
-    //####################################################
-    //########      Default Menu Layout Filter    ########
-    //####################################################
-
-    //This can be used on each controller to choose which menu to use
+    //This can be used on any controller or controller action to use this layout
     public class DefaultLayout : BaseLayout
     {
         public DefaultLayout()
@@ -15,7 +11,7 @@ public static partial class ModFrameLayouts
             //Sets the name of the layout
             layoutName = "Default Layout";
 
-            //Sets the includes viewdata name to use for the layout
+            //Sets the includes ViewData name to use for this layout
             includeNames = "defaultLayout";
 
             //Sets the master layout page location

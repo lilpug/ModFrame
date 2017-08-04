@@ -1,0 +1,31 @@
+﻿@* This layout example was used from: http://getbootstrap.com/examples/starter-template/ *@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Another Layout Template</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        @*Imports the header file*@
+        @Html.ModFrameHeader()
+    </head>
+    <body>
+        @*Imports the navigation menu file*@
+        @Html.LayoutView("anotherLayout", "navigation.cshtml")
+
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+
+        @*Imports the footer file*@
+        @Html.ModFrameFooter()
+    </body>
+</html>
+
+
+
+
+
+

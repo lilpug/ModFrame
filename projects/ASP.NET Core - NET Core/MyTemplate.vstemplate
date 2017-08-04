@@ -20,12 +20,36 @@
         <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
       </Folder>
       <Folder Name="layouts" TargetFolderName="layouts">
+        <Folder Name="AnotherLayout" TargetFolderName="AnotherLayout">
+          <Folder Name="css" TargetFolderName="css">
+            <ProjectItem ReplaceParameters="true" TargetFileName="styles.css">styles.css</ProjectItem>
+          </Folder>
+          <Folder Name="filter" TargetFolderName="filter">
+            <ProjectItem ReplaceParameters="true" TargetFileName="filter.cs">filter.cs</ProjectItem>
+          </Folder>
+          <Folder Name="includes" TargetFolderName="includes">
+            <Folder Name="footer" TargetFolderName="footer">
+              <ProjectItem ReplaceParameters="true" TargetFileName="default.cshtml">default.cshtml</ProjectItem>
+            </Folder>
+            <Folder Name="header" TargetFolderName="header">
+              <ProjectItem ReplaceParameters="true" TargetFileName="default.cshtml">default.cshtml</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="js" TargetFolderName="js">
+            <ProjectItem ReplaceParameters="true" TargetFileName="script.js">script.js</ProjectItem>
+          </Folder>
+          <Folder Name="views" TargetFolderName="views">
+            <ProjectItem ReplaceParameters="true" TargetFileName="Main.cshtml">Main.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Navigation.cshtml">Navigation.cshtml</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="plugins.json">plugins.json</ProjectItem>
+        </Folder>
         <Folder Name="Default" TargetFolderName="Default">
           <Folder Name="css" TargetFolderName="css">
             <ProjectItem ReplaceParameters="true" TargetFileName="styles.css">styles.css</ProjectItem>
           </Folder>
           <Folder Name="filter" TargetFolderName="filter">
-            <ProjectItem ReplaceParameters="true" TargetFileName="layout filter.cs">layout filter.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="filter.cs">filter.cs</ProjectItem>
           </Folder>
           <Folder Name="includes" TargetFolderName="includes">
             <Folder Name="footer" TargetFolderName="footer">
@@ -259,13 +283,14 @@
         <Folder Name="external" TargetFolderName="external" />
         <Folder Name="personal" TargetFolderName="personal" />
       </Folder>
+      <ProjectItem ReplaceParameters="false" TargetFileName="__TemplateIcon.png">__TemplateIcon.png</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="app.config">app.config</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="bower.json">bower.json</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName=".bowerrc">.bowerrc</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="gulpfile.js">gulpfile.js</ProjectItem>
-	  <ProjectItem ReplaceParameters="true" TargetFileName="LICENSE">LICENSE</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>

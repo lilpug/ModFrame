@@ -1,6 +1,6 @@
 ## ModFrame
 
-[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](https://raw.githubusercontent.com/lilpug/ModFrame/master/LICENSE)
 [![GitHub](https://img.shields.io/github/release/lilpug/modframe.svg?style=flat-square)](https://github.com/lilpug/ModFrame/releases)
 [![Visual Studio Marketplace](https://vsmarketplacebadge.apphb.com/installs-short/lilpug.modframe.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=lilpug.ModFrame)
 

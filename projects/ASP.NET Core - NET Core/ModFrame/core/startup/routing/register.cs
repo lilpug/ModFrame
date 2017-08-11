@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 public static partial class ModFrame
 {
+    /// <summary>
+    /// This function processes the additional routes if any
+    /// </summary>
+    /// <param name="app"></param>
     private static void RegisterRoutes(IApplicationBuilder app)
     {
         //Loads the MVC routes supplied

@@ -12,7 +12,7 @@ public static partial class ModFrameLayouts
             layoutName = "Default Layout";
 
             //Sets the includes ViewData name to use for this layout
-            includeNames = "defaultLayout";
+            includeViewDataName = "defaultLayout";
 
             //Sets the master layout page location
             masterPageLocation = "~/layouts/default/views/main.cshtml";

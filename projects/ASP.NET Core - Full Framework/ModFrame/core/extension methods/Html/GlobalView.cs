@@ -6,9 +6,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 /// </summary>
 public static partial class HtmlViewExtension
 {
+    /// <summary>
+    /// This function returns a IHtmlContent from a specified global view
+    /// </summary>
+    /// <param name="html"></param>
+    /// <param name="viewRoute"></param>
+    /// <returns></returns>
     public static IHtmlContent GlobalView(this IHtmlHelper html, string viewRoute)
     {
-        return html.Partial(string.Format("{0}views/{1}", ModFrame.globalBase, viewRoute));
+        return html.Partial($"{ModFrame.globalBase}views/{viewRoute}");
     }    
 }
 

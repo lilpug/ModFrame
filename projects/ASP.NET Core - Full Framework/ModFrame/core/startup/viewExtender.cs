@@ -16,23 +16,34 @@ public static partial class ModFrame
             List<string> allTheViewPaths = new List<string>();
 
             //Gets the directory names of the layout plugin folder
-            string[] layoutFolders = Directory.GetDirectories(Path.Combine(theApplicationPath, "Layouts", "structures"));
-
+            string[] layoutFolders = Directory.GetDirectories(Path.Combine(theApplicationPath, "Layouts"));
             foreach (string folder in layoutFolders)
             {
-                //Adds the layout plugin views to the acception list
-                allTheViewPaths.Add("/Layouts/structures/" + Path.GetFileNameWithoutExtension(folder) + "/views/{1}/{0}.cshtml");
-                allTheViewPaths.Add("/Layouts/structures/" + Path.GetFileNameWithoutExtension(folder) + "/views/{0}.cshtml");
+                //Checks if the layout has views before adding it to the acception list
+                if (Directory.Exists(Path.Combine(theApplicationPath, "layouts", folder, "views")))
+                {
+                    //Adds the layout plugin views to the acception list
+                    allTheViewPaths.Add($"/Layouts/{Path.GetFileNameWithoutExtension(folder)}/views/{{1}}/{{0}}.cshtml");
+                    allTheViewPaths.Add($"/Layouts/{Path.GetFileNameWithoutExtension(folder)}/views/{{0}}.cshtml");
+                }
             }
 
-            //Gets the directory names of the module plugin folder
-            string[] folders = Directory.GetDirectories(Path.Combine(theApplicationPath, "Modules"));
-
-            foreach (string folder in folders)
+            //Gets the group names of the modules folder
+            string[] moduleBaseFolders = Directory.GetDirectories(Path.Combine(theApplicationPath, "Modules"));
+            foreach(string group in moduleBaseFolders)
             {
-                //Adds the module plugin views to the acception list
-                allTheViewPaths.Add("/Modules/" + Path.GetFileNameWithoutExtension(folder) + "/views/{1}/{0}.cshtml");
-                allTheViewPaths.Add("/Modules/" + Path.GetFileNameWithoutExtension(folder) + "/views/{0}.cshtml");
+                //Gets the module names within that group folder
+                string[] moduleFolders = Directory.GetDirectories(Path.Combine(theApplicationPath, group));
+                foreach(string module in moduleFolders)
+                {
+                    //Checks if the module has views before adding it to the acception list
+                    if (Directory.Exists(Path.Combine(theApplicationPath, group, module, "views")))
+                    {
+                        //Adds the module views to the acception list
+                        allTheViewPaths.Add($"/Modules/{Path.GetFileNameWithoutExtension(group)}/{Path.GetFileNameWithoutExtension(module)}/views/{{1}}/{{0}}.cshtml");
+                        allTheViewPaths.Add($"/Modules/{Path.GetFileNameWithoutExtension(group)}/{Path.GetFileNameWithoutExtension(module)}/views/{{0}}.cshtml");
+                    }
+                }
             }
 
             //Updates the razor view locations

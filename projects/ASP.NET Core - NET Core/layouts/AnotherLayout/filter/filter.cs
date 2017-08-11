@@ -11,7 +11,7 @@ public static partial class ModFrameLayouts
             layoutName = "Another Layout";
 
             //Sets the includes ViewData name to use for this layout
-            includeNames = "anotherLayout";
+            includeViewDataName = "anotherLayout";
 
             //Sets the master layout page location
             masterPageLocation = "~/layouts/anotherlayout/views/main.cshtml";

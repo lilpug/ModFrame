@@ -3,8 +3,12 @@ using System;
 using System.Reflection;
 
 public static partial class ModFrame
-{   
-    //This function processes the ModFrameRouting functions and adds any extra required routing
+{
+    /// <summary>
+    /// This function processes the ModFrameRouting functions and adds any extra required routing
+    /// </summary>
+    /// <param name="routes"></param>
+    /// <returns></returns>
     private static IRouteBuilder CoreRoutesLoader(IRouteBuilder routes)
     {
         //Delcares the route loader class instance to use

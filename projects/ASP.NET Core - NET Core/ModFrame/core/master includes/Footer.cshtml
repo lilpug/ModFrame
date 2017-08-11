@@ -11,7 +11,7 @@
         moduleFiles.Sort();
         foreach (string file in moduleFiles)
         {
-            @Html.Partial("~/modframe/global/includes/footer/" + System.IO.Path.GetFileName(file));
+            @Html.Partial($"~/modframe/global/includes/footer/{System.IO.Path.GetFileName(file)}");
         }
     }
 
@@ -24,13 +24,13 @@
         moduleFolder.Sort();
         foreach (string folder in moduleFolder)
         {
-            if (Directory.Exists(folder + "\\includes\\footer"))
+            if (Directory.Exists($@"{folder}\includes\footer"))
             {
-                List<string> moduleFiles = Directory.GetFiles(folder + "\\includes\\footer").ToList();
+                List<string> moduleFiles = Directory.GetFiles($@"{folder}\includes\footer").ToList();
                 moduleFiles.Sort();
                 foreach (string file in moduleFiles)
                 {
-                    @Html.Partial("~/Modules/" + System.IO.Path.GetFileName(baseFolder) + "/" + System.IO.Path.GetFileName(folder) + "/includes/footer/" + System.IO.Path.GetFileName(file));
+                    @Html.Partial($"~/Modules/{System.IO.Path.GetFileName(baseFolder)}/{System.IO.Path.GetFileName(folder)}/includes/footer/{System.IO.Path.GetFileName(file)}");
                     }
                 }
             }
@@ -41,13 +41,13 @@
     layoutFolder.Sort();
     foreach (string folder in layoutFolder)
     {
-        if (Directory.Exists(folder + "\\includes\\footer"))
+        if (Directory.Exists($@"{folder}\includes\footer"))
         {
-            List<string> moduleFiles = Directory.GetFiles(folder + "\\includes\\footer").ToList();
+            List<string> moduleFiles = Directory.GetFiles($@"{folder}\includes\footer").ToList();
             moduleFiles.Sort();
             foreach (string file in moduleFiles)
             {
-                @Html.Partial(string.Format("~/Layouts/{0}/includes/footer/{1}", System.IO.Path.GetFileName(folder), System.IO.Path.GetFileName(file)));
+                @Html.Partial($"~/Layouts/{System.IO.Path.GetFileName(folder)}/includes/footer/{System.IO.Path.GetFileName(file)}");
             }
         }
     }

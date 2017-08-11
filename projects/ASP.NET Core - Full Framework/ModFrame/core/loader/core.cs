@@ -3,6 +3,9 @@ using System.Reflection;
 
 public static partial class ModFrameLauncher
 {
+    /// <summary>
+    /// This function sets of the ModFrame launcher process
+    /// </summary>
     public static void Load()
     {
         //Delcares the caching loader class instance to use

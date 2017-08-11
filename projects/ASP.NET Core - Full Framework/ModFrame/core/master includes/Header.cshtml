@@ -12,7 +12,7 @@
         moduleFiles.Sort();
         foreach (string file in moduleFiles)
         {
-            @Html.Partial("~/modframe/global/includes/header/" + System.IO.Path.GetFileName(file));
+            @Html.Partial($"~/modframe/global/includes/header/{System.IO.Path.GetFileName(file)}");
         }
     }
 
@@ -25,13 +25,13 @@
         moduleFolder.Sort();
         foreach (string folder in moduleFolder)
         {
-            if (Directory.Exists(folder + "\\includes\\header"))
+            if (Directory.Exists($@"{folder}\includes\header"))
             {
-                List<string> moduleFiles = Directory.GetFiles(folder + "\\includes\\header").ToList();
+                List<string> moduleFiles = Directory.GetFiles($@"{folder}\includes\header").ToList();
                 moduleFiles.Sort();
                 foreach (string file in moduleFiles)
                 {
-                    @Html.Partial("~/Modules/" + System.IO.Path.GetFileName(baseFolder) + "/" + System.IO.Path.GetFileName(folder) + "/includes/header/" + System.IO.Path.GetFileName(file));
+                    @Html.Partial($"~/Modules/{System.IO.Path.GetFileName(baseFolder)}/{System.IO.Path.GetFileName(folder)}/includes/header/{System.IO.Path.GetFileName(file)}");
                 }
             }
         }
@@ -42,13 +42,13 @@
     layoutFolder.Sort();
     foreach (string folder in layoutFolder)
     {
-        if(Directory.Exists(folder + "\\includes\\header"))
+        if(Directory.Exists($@"{folder}\includes\header"))
         { 
-            List<string> moduleFiles = Directory.GetFiles( folder + "\\includes\\header").ToList();
+            List<string> moduleFiles = Directory.GetFiles($@"{folder}\includes\header").ToList();
             moduleFiles.Sort();
             foreach (string file in moduleFiles)
             {
-                @Html.Partial(string.Format("~/Layouts/{0}/includes/header/{1}", System.IO.Path.GetFileName(folder), System.IO.Path.GetFileName(file)));
+                @Html.Partial($"~/Layouts/{System.IO.Path.GetFileName(folder)}/includes/header/{System.IO.Path.GetFileName(file)}");
             }
         }
     }

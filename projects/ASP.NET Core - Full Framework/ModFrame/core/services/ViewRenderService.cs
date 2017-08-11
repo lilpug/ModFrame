@@ -19,6 +19,9 @@ public interface IViewRenderService
     Task<string> RenderToStringAsync(string viewPath, object model = null);
 }
 
+/// <summary>
+/// This class is used as an ASP.NET Middleware Service to render mvc views into a string at runtime
+/// </summary>
 public class ViewRenderService : IViewRenderService
 {
     private readonly IRazorViewEngine _razorViewEngine;
@@ -34,7 +37,11 @@ public class ViewRenderService : IViewRenderService
         _serviceProvider = serviceProvider;
     }
 
-
+    /// <summary>
+    /// This function renders a ViewResult into a html string and returns it
+    /// </summary>
+    /// <param name="result"></param>
+    /// <returns></returns>
     public async Task<string> RenderToStringAsync(ViewResult result)
     {
         var httpContext = new DefaultHttpContext { RequestServices = _serviceProvider };
@@ -79,7 +86,13 @@ public class ViewRenderService : IViewRenderService
             return sw.ToString();
         }
     }
-    
+
+    /// <summary>
+    /// This function renders a ViewResult into a html string and returns it
+    /// </summary>
+    /// <param name="viewPath"></param>
+    /// <param name="model"></param>
+    /// <returns></returns>
     public async Task<string> RenderToStringAsync(string viewPath, object model = null)
     {
         var httpContext = new DefaultHttpContext { RequestServices = _serviceProvider };

@@ -6,8 +6,12 @@ using Microsoft.AspNetCore.Http;
 /// </summary>
 public static partial class HttpRequestExtensions
 {   
-    //Obtains the current url of the page
-    public static string RawUrl(this HttpRequest request)
+    /// <summary>
+    /// This function returns the current requests page url
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    public static string CurrentURL(this HttpRequest request)
     {
         if (string.IsNullOrEmpty(request.Scheme))
         {
@@ -18,6 +22,6 @@ public static partial class HttpRequestExtensions
             throw new InvalidOperationException("Missing Host");
         }
         string path = (request.PathBase.HasValue || request.Path.HasValue) ? (request.PathBase + request.Path).ToString() : "/";
-        return request.Scheme + "://" + request.Host + path + request.QueryString;
+        return $"{request.Scheme}://{request.Host}{path}{request.QueryString}";
     }
 }

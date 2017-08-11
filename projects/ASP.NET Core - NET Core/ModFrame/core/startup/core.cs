@@ -21,6 +21,11 @@ using System;
 
 public static partial class ModFrame
 {    
+    /// <summary>
+    /// This function launches the application start up requirements for ModFrame
+    /// </summary>
+    /// <param name="env"></param>
+    /// <param name="Configuration"></param>
     public static void ApplicationStartup(IHostingEnvironment env, IConfigurationRoot Configuration)
     {
         //Stores it in the global config for usage later
@@ -30,6 +35,10 @@ public static partial class ModFrame
         theApplicationPath = env.ContentRootPath;
     }
 
+    /// <summary>
+    /// This function sets up the servics for ModFrame
+    /// </summary>
+    /// <param name="services"></param>
     public static void ServiceSetup(IServiceCollection services)
     {
         //Tells it to use the generic session timeout loaded from the configuration file
@@ -44,6 +53,7 @@ public static partial class ModFrame
         //Extends the original razor view service with our own
         services.Configure<RazorViewEngineOptions>(o =>
         {
+            //Note: This is general not used as we have our own view extensions for layouts, modules and the global folder but have left in for usability
             var expander = new ViewExtender();
             o.ViewLocationExpanders.Add(expander);
         });
@@ -69,6 +79,10 @@ public static partial class ModFrame
         });
     }
 
+    /// <summary>
+    /// This function sets up the application for ModFrame
+    /// </summary>
+    /// <param name="app"></param>
     public static void AppSetup(IApplicationBuilder app)
     {
         //Adds compression to the response

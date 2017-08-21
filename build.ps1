@@ -12,8 +12,8 @@ function ZipFiles( $sourcedir, $fullZipPath )
 $ScriptDir = Split-Path -parent $MyInvocation.MyCommand.Path
 
 # Stores the project folders for the two modframe project types
-$fullProjectDir = $ScriptDir + "\projects\ASP.NET Core - Full Framework"
-$CoreProjectDir = $ScriptDir + "\projects\ASP.NET Core - NET Core"
+$fullProjectDir = $ScriptDir + "\projects\ASP.NET Core 2.0 - Full Framework"
+$CoreProjectDir = $ScriptDir + "\projects\ASP.NET Core 2.0 - NET Core"
 
 # Stores all the folders and items we want to delete before making a zip file template
 $itemArray = "bin", "node_modules", "obj", "Properties", "*.user", "wwwroot\components", "wwwroot\lib\*", "*.log"

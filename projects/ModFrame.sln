@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET Core - Full Framework", "ASP.NET Core - Full Framework\ASP.NET Core - Full Framework.csproj", "{4A57245B-4D81-45D0-8D3A-8C8F8A2140CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET Core 2.0 - Full Framework", "ASP.NET Core 2.0 - Full Framework\ASP.NET Core 2.0 - Full Framework.csproj", "{4A57245B-4D81-45D0-8D3A-8C8F8A2140CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET Core - NET Core", "ASP.NET Core - NET Core\ASP.NET Core - NET Core.csproj", "{83A15AC4-093E-46B0-9B3C-9C27F3458492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET Core 2.0 - NET Core", "ASP.NET Core 2.0 - NET Core\ASP.NET Core 2.0 - NET Core.csproj", "{83A15AC4-093E-46B0-9B3C-9C27F3458492}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{A72215D9-7825-44AE-83A6-8BEED379174D}"
 EndProject

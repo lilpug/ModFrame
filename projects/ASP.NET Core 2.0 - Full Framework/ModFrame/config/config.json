@@ -1,0 +1,32 @@
+{
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+
+  "core": {
+    "session_timeout": 20,
+    "is_minified": true,
+    "active_configuration": "live_config"
+  },
+
+  "dev_config": {
+    "information": {
+      "example": "this is an example string for dev"
+    }
+  },
+
+  "test_config": {
+    "information": {
+      "example": "this is an example string for test"
+    }
+  },
+
+  "live_config": {
+    "information": {
+      "example": "this is an example string for live"
+    }
+  }
+}

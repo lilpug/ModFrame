@@ -87,74 +87,28 @@
                   <ProjectItem ReplaceParameters="false" TargetFileName="modules">modules</ProjectItem>
                   <ProjectItem ReplaceParameters="false" TargetFileName="personal-plugins">personal-plugins</ProjectItem>
                 </Folder>
-                <Folder Name="global" TargetFolderName="global">
-                  <Folder Name="css" TargetFolderName="css">
-                    <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                  </Folder>
-                  <Folder Name="js" TargetFolderName="js">
-                    <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                  </Folder>
-                </Folder>
-                <Folder Name="layout" TargetFolderName="layout">
-                  <Folder Name="AnotherLayout" TargetFolderName="AnotherLayout">
-                    <Folder Name="css" TargetFolderName="css">
-                      <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                    </Folder>
-                    <Folder Name="js" TargetFolderName="js">
-                      <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                    </Folder>
-                  </Folder>
-                  <Folder Name="Default" TargetFolderName="Default">
-                    <Folder Name="css" TargetFolderName="css">
-                      <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                    </Folder>
-                    <Folder Name="js" TargetFolderName="js">
-                      <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                    </Folder>
-                  </Folder>
-                </Folder>
-                <Folder Name="modules" TargetFolderName="modules">
-                  <Folder Name="core" TargetFolderName="core">
-                    <Folder Name="status codes" TargetFolderName="status codes">
-                      <Folder Name="css" TargetFolderName="css">
-                        <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                      </Folder>
-                    </Folder>
-                  </Folder>
-                  <Folder Name="examples" TargetFolderName="examples">
-                    <Folder Name="mvc" TargetFolderName="mvc">
-                      <Folder Name="css" TargetFolderName="css">
-                        <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                      </Folder>
-                      <Folder Name="js" TargetFolderName="js">
-                        <ProjectItem ReplaceParameters="false" TargetFileName="base">base</ProjectItem>
-                      </Folder>
-                    </Folder>
-                  </Folder>
-                </Folder>
               </Folder>
               <Folder Name="plugins" TargetFolderName="plugins">
-                <Folder Name="cache" TargetFolderName="cache">
-                  <ProjectItem ReplaceParameters="true" TargetFileName="buildTypeCheck.js">buildTypeCheck.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="CleanStructureMultiLayer.js">CleanStructureMultiLayer.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="CleanStructureSingleLayer.js">CleanStructureSingleLayer.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ConAndMinMultiLayer.js">ConAndMinMultiLayer.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ConAndMinSingleLayer.js">ConAndMinSingleLayer.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="fileChecker.js">fileChecker.js</ProjectItem>
-                </Folder>
+                <ProjectItem ReplaceParameters="true" TargetFileName="CachebuildTypeCheck.js">CachebuildTypeCheck.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="CleanStructureMultiLayer.js">CleanStructureMultiLayer.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="CleanStructureSingleLayer.js">CleanStructureSingleLayer.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="ConAndMinMultiLayer.js">ConAndMinMultiLayer.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="ConAndMinSingleLayer.js">ConAndMinSingleLayer.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="CoreConAndMin.js">CoreConAndMin.js</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="enviroment.js">enviroment.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="exists.js">exists.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="getFileTypeExist.js">getFileTypeExist.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="getFolders.js">getFolders.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Exists.js">Exists.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="GetFileTypeExist.js">GetFileTypeExist.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="GetFolders.js">GetFolders.js</ProjectItem>
               </Folder>
-              <ProjectItem ReplaceParameters="true" TargetFileName="bower.js">bower.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="core.js">core.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="external-plugins.js">external-plugins.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="globals.js">globals.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="layouts.js">layouts.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="modules.js">modules.js</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="packages.js">packages.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="personal-plugins.js">personal-plugins.js</ProjectItem>
             </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="plugins.json">plugins.json</ProjectItem>
           </Folder>
           <Folder Name="extension methods" TargetFolderName="extension methods">
             <Folder Name="Controller" TargetFolderName="Controller">
@@ -277,6 +231,24 @@
             </Folder>
             <Folder Name="models" TargetFolderName="models">
               <ProjectItem ReplaceParameters="true" TargetFileName="example.cs">example.cs</ProjectItem>
+            </Folder>
+          </Folder>
+        </Folder>
+      </Folder>
+      <Folder Name="plugins" TargetFolderName="plugins">
+        <Folder Name="external" TargetFolderName="external">
+          <Folder Name="example-external-plugin" TargetFolderName="example-external-plugin">
+            <ProjectItem ReplaceParameters="true" TargetFileName="script.js">script.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="styles.css">styles.css</ProjectItem>
+          </Folder>
+        </Folder>
+        <Folder Name="personal" TargetFolderName="personal">
+          <Folder Name="example-personal-plugin" TargetFolderName="example-personal-plugin">
+            <Folder Name="css" TargetFolderName="css">
+              <ProjectItem ReplaceParameters="true" TargetFileName="styles.css">styles.css</ProjectItem>
+            </Folder>
+            <Folder Name="js" TargetFolderName="js">
+              <ProjectItem ReplaceParameters="true" TargetFileName="script.js">script.js</ProjectItem>
             </Folder>
           </Folder>
         </Folder>

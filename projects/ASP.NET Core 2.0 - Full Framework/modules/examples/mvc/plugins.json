@@ -1,4 +1,10 @@
 {
-  "dependencies": {
+  "bower": {
+    "dependencies": {
+    }
+  },
+  "npm": {
+    "dependencies": {      
+    }
   }
 }

@@ -6,11 +6,11 @@ var chokidar = require('chokidar');
 
 //personal plugins
 var env = require("./plugins/enviroment");
-var BuildTypeCheck = require("./plugins/cache/buildTypeCheck");
-var exists = require("./plugins/exists");
-var getFolders = require("./plugins/getFolders");
-var ConAndMinSingleLayer = require("./plugins/cache/ConAndMinSingleLayer");
-var CleanStructureSingleLayer = require("./plugins/cache/CleanStructureSingleLayer");
+var CacheBuildTypeCheck = require("./plugins/CacheBuildTypeCheck");
+var Exists = require("./plugins/Exists");
+var GetFolders = require("./plugins/GetFolders");
+var ConAndMinSingleLayer = require("./plugins/ConAndMinSingleLayer");
+var CleanStructureSingleLayer = require("./plugins/CleanStructureSingleLayer");
 
 //The hosting file path
 var hosting = "./wwwroot";
@@ -29,8 +29,10 @@ gulp.task('globals-watch', function ()
     //Stores the directories to watch
     var watchJSPath = path.join(originalDirectory, 'js/**/*.js');
     var watchCSSPath = path.join(originalDirectory, 'css/**/*.css');
+	var watchLessPath = path.join(originalDirectory, 'css/**/*.less');
+	var watchSassPath = path.join(originalDirectory, 'css/**/*.scss');
 
-    chokidar.watch([watchJSPath, watchCSSPath], { ignoreInitial: true, depth: 5 })
+    chokidar.watch([watchJSPath, watchCSSPath, watchLessPath, watchSassPath], { ignoreInitial: true, depth: 5 })
         .on('all', function (event, path) {
             //Triggers the clean just in case files have been deleted or renamed etc
             gulp.start(["globals-clean"]);
@@ -55,25 +57,23 @@ gulp.task('globals-watch', function ()
 gulp.task('globals-clean', function ()
 {
     //Checks if the directory has been compiled and the original exists, otherwise there is no point trying to check for deletes etc.
-    if (exists(originalDirectory) && exists(compiledDirectory))
+    if (Exists(originalDirectory) && Exists(compiledDirectory))
     {       
         //Runs the cleaning process for the inner js and css
-        CleanStructureSingleLayer(originalDirectory, compiledDirectory, path.join(cacheBasePath, folderName), "js");
-        CleanStructureSingleLayer(originalDirectory, compiledDirectory, path.join(cacheBasePath, folderName), "css");
+        CleanStructureSingleLayer(originalDirectory, compiledDirectory, "js");
+        CleanStructureSingleLayer(originalDirectory, compiledDirectory, "css");
 
         //Checks if there are still any folders in the main directory now, if not then remove the parent directory as well
-        var newFolders = getFolders(compiledDirectory);
-        if (newFolders.length <= 0 && exists(compiledDirectory))
+        var newFolders = GetFolders(compiledDirectory);
+        if (newFolders.length <= 0 && Exists(compiledDirectory))
         {
-            del.sync(compiledDirectory);
-            del.sync(path.join(cacheBasePath, folderName));//Cache list            
+            del.sync(compiledDirectory);            
         }
     }
-    else if(exists(compiledDirectory))
+    else if(Exists(compiledDirectory))
     {
         //does not exist on the original but is still in the compiled so delete it
-        del.sync(compiledDirectory);
-        del.sync(path.join(cacheBasePath, folderName));//Cache list
+        del.sync(compiledDirectory);        
     }
 });
 
@@ -81,27 +81,27 @@ gulp.task('globals-clean', function ()
 gulp.task('globals', function ()
 {
     //Only run if theres something to compile
-    if (exists(originalDirectory))
+    if (Exists(originalDirectory))
     {
         //Checks if its a different build type to the previous build ran
-        BuildTypeCheck("release", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
+        CacheBuildTypeCheck("release", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
 
         //Conats and minifes the structures
-        ConAndMinSingleLayer(originalDirectory, compiledDirectory, path.join(cacheBasePath, folderName), "js", false);
-        ConAndMinSingleLayer(originalDirectory, compiledDirectory, path.join(cacheBasePath, folderName), "css", false);
+        ConAndMinSingleLayer(originalDirectory, compiledDirectory, "js", false);
+        ConAndMinSingleLayer(originalDirectory, compiledDirectory, "css", false);
     }
 });
 
 //Compiles all the personal plugin js and css in minified format split up into their corraspending plugin folders
 gulp.task('debug-globals', function () {
     //Only run if theres something to compile
-    if (exists(originalDirectory))
+    if (Exists(originalDirectory))
     {
         //Checks if its a different build type to the previous build ran
-        BuildTypeCheck("debug", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
+        CacheBuildTypeCheck("debug", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
 
         //Conats and minifes the structures
-        ConAndMinSingleLayer(originalDirectory, compiledDirectory, path.join(cacheBasePath, folderName), "js", true);
-        ConAndMinSingleLayer(originalDirectory, compiledDirectory, path.join(cacheBasePath, folderName), "css", true);
+        ConAndMinSingleLayer(originalDirectory, compiledDirectory, "js", true);
+        ConAndMinSingleLayer(originalDirectory, compiledDirectory, "css", true);
     }
 });

@@ -1,1 +1,35 @@
-{"dependencies":{"jquery":"2.2.3","bootstrap":"3.3.7","Font-Awesome":"4.7.0"},"description":"The most popular front-end framework for developing responsive, mobile first projects on the web.","devDependencies":{},"homepage":"http://getbootstrap.com","ignore":["package.json","_config.yml","CNAME","composer.json","CONTRIBUTING.md","docs","js/tests","test-infra"],"keywords":["jquery","javascript","browser","library","responsive","front-end","framework","web"],"license":"MIT","main":"dist/jquery.js","moduleType":"globals","name":"jquery","private":true}
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "jquery": "2.2.3",
+    "bootstrap": "3.3.7",
+    "Font-Awesome": "4.7.0"
+  },
+  "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+  "keywords": [
+    "jquery",
+    "javascript",
+    "browser",
+    "library",
+    "responsive",
+    "front-end",
+    "framework",
+    "web"
+  ],
+  "homepage": "http://getbootstrap.com",
+  "devDependencies": {},
+  "license": "MIT",
+  "main": "dist/jquery.js",
+  "ignore": [
+    "package.json",
+    "_config.yml",
+    "CNAME",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "docs",
+    "js/tests",
+    "test-infra"
+  ],
+  "moduleType": "globals"
+}

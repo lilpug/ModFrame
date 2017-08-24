@@ -4,7 +4,7 @@ var path = require("path");
 var dirSync = require('gulp-directory-sync');
 
 //personal plugins
-var exists = require("./plugins/exists");
+var Exists = require("./plugins/Exists");
 
 //The hosting file paths
 var hosting = "wwwroot";//Gets the hosting information on paths
@@ -20,7 +20,7 @@ var originalDirectory = path.join("./", 'plugins/external');
 gulp.task('external-plugins-sync', function ()
 {
     //Only run if theres something to compile
-    if (exists(originalDirectory))
+    if (Exists(originalDirectory))
     {
         return gulp.src('')
         .pipe(dirSync(originalDirectory, compiledDirectory, { printSummary: true }));

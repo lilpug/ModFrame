@@ -6,11 +6,11 @@ var chokidar = require('chokidar');
 
 //personal plugins
 var env = require("./plugins/enviroment");
-var BuildTypeCheck = require("./plugins/cache/buildTypeCheck");
-var exists = require("./plugins/exists");
-var getFolders = require("./plugins/getFolders");
-var ConAndMinMultiLayer = require("./plugins/cache/ConAndMinMultiLayer");
-var CleanStructureMultiLayer = require("./plugins/cache/CleanStructureMultiLayer");
+var CacheBuildTypeCheck = require("./plugins/CacheBuildTypeCheck");
+var Exists = require("./plugins/Exists");
+var GetFolders = require("./plugins/GetFolders");
+var ConAndMinMultiLayer = require("./plugins/ConAndMinMultiLayer");
+var CleanStructureMultiLayer = require("./plugins/CleanStructureMultiLayer");
 
 //The hosting file path
 var hosting = "./wwwroot";
@@ -28,8 +28,10 @@ gulp.task('modules-watch', function ()
     //Stores the directories to watch
     var watchJSPath = path.join(originalDirectory, '**/**/js/**/*.js');
     var watchCSSPath = path.join(originalDirectory, '**/**/css/**/*.css');
+	var watchLessPath = path.join(originalDirectory, '**/**/css/**/*.less');
+	var watchSassPath = path.join(originalDirectory, '**/**/css/**/*.scss');
     
-    chokidar.watch([watchJSPath, watchCSSPath], { ignoreInitial: true, depth: 5 })
+    chokidar.watch([watchJSPath, watchCSSPath, watchLessPath, watchSassPath], { ignoreInitial: true, depth: 5 })
         .on('all', function (event, path)
         {
             //Triggers the clean just in case files have been deleted or renamed etc
@@ -56,48 +58,45 @@ gulp.task('modules-watch', function ()
 gulp.task('modules-clean', function ()
 {
     //Checks if the directory has been compiled and the original exists, otherwise there is no point trying to check for deletes etc.
-    if (exists(originalDirectory) && exists(compiledDirectory))
+    if (Exists(originalDirectory) && Exists(compiledDirectory))
     {
         //Gets all the folders in the directory
-        var baseFolders = getFolders(originalDirectory);
+        var baseFolders = GetFolders(originalDirectory);
 
         //Gets all the folders in the directory
-        var compiledFolders = getFolders(compiledDirectory);
+        var compiledFolders = GetFolders(compiledDirectory);
         
         //Deletes any group and sub layer structure that does not exist in the uncompiled versions
         var compiledFolderChecks = compiledFolders.map(function (folder)
         {
             //Checks if the folder does not exist within the uncompiled version, if so removes it as its obsolete
-            if (!exists(path.join(originalDirectory, folder)))
+            if (!Exists(path.join(originalDirectory, folder)))
             {
-                del.sync(path.join(compiledDirectory, folder));
-                del.sync(path.join(cacheBasePath, folderName, folder));//Cache list
+                del.sync(path.join(compiledDirectory, folder));                
             }
             else
             {
                 //Deletes any group sub layer structures that do not exist in the uncompiled version
-                var subLayerFolders = getFolders(path.join(compiledDirectory, folder))
+                var subLayerFolders = GetFolders(path.join(compiledDirectory, folder))
                 var subFolderChecks = subLayerFolders.map(function (subFolder)
                 {
                     //Checks if the folder does not exist within the uncompiled version, if so removes it as its obsolete
-                    if (!exists(path.join(originalDirectory, folder, subFolder)))
+                    if (!Exists(path.join(originalDirectory, folder, subFolder)))
                     {
-                        del.sync(path.join(compiledDirectory, folder, subFolder));
-                        del.sync(path.join(cacheBasePath, folderName, folder, subFolder));//Cache list
+                        del.sync(path.join(compiledDirectory, folder, subFolder));                        
                     }
 
                     //If it exists in the original location and it exists in the compiled location check the inner folders
                     else
                     {
                         //Gets all the inner folders in the 
-                        var innerFolders = getFolders(path.join(compiledDirectory, folder, subFolder));
+                        var innerFolders = GetFolders(path.join(compiledDirectory, folder, subFolder));
                         var tasks = innerFolders.map(function (innerFolder)
                         {
                             //Checks if the inner folder does not exist within the original location anymore
-                            if (!exists(path.join(originalDirectory, folder, subFolder, innerFolder)))
+                            if (!Exists(path.join(originalDirectory, folder, subFolder, innerFolder)))
                             {
-                                del.sync(path.join(compiledDirectory, folder, subFolder, innerFolder));
-                                del.sync(path.join(cacheBasePath, folderName, folder, subFolder, innerFolder));//Cache list
+                                del.sync(path.join(compiledDirectory, folder, subFolder, innerFolder));                                
                             }
                         });
                     }
@@ -109,22 +108,21 @@ gulp.task('modules-clean', function ()
         var tasks = baseFolders.map(function (baseFolder)
         {
             //Runs the cleaning process for the inner js and css
-            CleanStructureMultiLayer(getFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), path.join(cacheBasePath, folderName, baseFolder), "js");
-            CleanStructureMultiLayer(getFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), path.join(cacheBasePath, folderName, baseFolder), "css");
+            CleanStructureMultiLayer(GetFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), "js");
+            CleanStructureMultiLayer(GetFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), "css");
         });
     
         //Checks if there are still any folders in the main directory now, if not then remove the parent directory as well
-        var newFolders = getFolders(compiledDirectory);
-        if (newFolders.length <= 0 && exists(compiledDirectory)) {
-            del.sync(compiledDirectory);
-            del.sync(path.join(cacheBasePath, folderName));//Cache list
+        var newFolders = GetFolders(compiledDirectory);
+        if (newFolders.length <= 0 && Exists(compiledDirectory))
+        {
+            del.sync(compiledDirectory);            
         }
     }
-    else if(exists(compiledDirectory))
+    else if(Exists(compiledDirectory))
     {
         //does not exist on the original but is still in the compiled so delete it
-        del.sync(compiledDirectory);
-        del.sync(path.join(cacheBasePath, folderName));//Cache list
+        del.sync(compiledDirectory);        
     }
 });
 
@@ -132,20 +130,20 @@ gulp.task('modules-clean', function ()
 gulp.task('modules', function ()
 {
     //Only run if theres something to compile
-    if (exists(originalDirectory))
+    if (Exists(originalDirectory))
     {
         //Gets all the module groups in the directory
-        var baseFolders = getFolders(originalDirectory);
+        var baseFolders = GetFolders(originalDirectory);
 
         //Checks if its a different build type to the previous build ran
-        BuildTypeCheck("release", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
+        CacheBuildTypeCheck("release", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
 
         //Loops over all the parent folders and gets their sub layers within the module group
         var tasks = baseFolders.map(function (baseFolder) 
         {   
             //Conats and minifes the structures
-            ConAndMinMultiLayer(getFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), path.join(cacheBasePath, folderName, baseFolder), "js", false);
-            ConAndMinMultiLayer(getFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), path.join(cacheBasePath, folderName, baseFolder), "css", false);
+            ConAndMinMultiLayer(GetFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), "js", false);
+            ConAndMinMultiLayer(GetFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), "css", false);
         });
     }
 });
@@ -153,19 +151,19 @@ gulp.task('modules', function ()
 //Compiles all the personal plugin js and css in minified format split up into their corraspending plugin folders
 gulp.task('debug-modules', function () {
     //Only run if theres something to compile
-    if (exists(originalDirectory))
+    if (Exists(originalDirectory))
     {
         //Gets all the module groups in the directory
-        var baseFolders = getFolders(originalDirectory);
+        var baseFolders = GetFolders(originalDirectory);
 
         //Checks if its a different build type to the previous build ran
-        BuildTypeCheck("debug", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
+        CacheBuildTypeCheck("debug", compiledDirectory, cacheBasePath, cacheBuildTypeName, folderName);
 
         //Loops over all the parent folders and gets their sub layers within the module group
         var tasks = baseFolders.map(function (baseFolder) {
             //Conats and minifes the structures
-            ConAndMinMultiLayer(getFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), path.join(cacheBasePath, folderName, baseFolder), "js", true);
-            ConAndMinMultiLayer(getFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), path.join(cacheBasePath, folderName, baseFolder), "css", true);
+            ConAndMinMultiLayer(GetFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), "js", true);
+            ConAndMinMultiLayer(GetFolders(path.join(originalDirectory, baseFolder)), path.join(originalDirectory, baseFolder), path.join(compiledDirectory, baseFolder), "css", true);
         });
     }
 });

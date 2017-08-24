@@ -1,7 +1,7 @@
 ﻿var fs = require('fs');
 
 //Function to determine if a file or directory exists
-function exists(dir) {
+function Exists(dir) {
     try {
         var stat = fs.statSync(dir);
         if (stat) {
@@ -14,4 +14,4 @@ function exists(dir) {
 }
 
 // Exporting the plugins main function
-module.exports = exists;
+module.exports = Exists;

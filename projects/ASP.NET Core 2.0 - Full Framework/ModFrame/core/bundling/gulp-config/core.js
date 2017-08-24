@@ -24,13 +24,16 @@ gulp.task('1-run', function ()
 });
 
 //Main task which gets called to load the watchers for visual studio
-gulp.task("2-start-watchers", ["0-run-and-clean", "globals-watch", "layouts-watch", "modules-watch", "personal-plugins-watch", "bower-packages-watch"]);
+gulp.task("2-start-watchers", ["0-run-and-clean", "globals-watch", "layouts-watch", "modules-watch", "personal-plugins-watch", "packages-watch"]);
 
 //Main Task which gets called to clean all the files that have been removed or restructured
 gulp.task("3-clean-all", ["globals-clean", "layouts-clean", "modules-clean", "personal-plugins-clean", "external-plugins-sync"]);
 
+//Main task which gets called to load fire of the package regeneration for visual studio
+gulp.task("4-packages", ["packages"]);
+
 //Main task that builds the minifcation and compilation of all the different types
-gulp.task("release-build", ["bower-packages", "globals", "layouts", "modules", "personal-plugins", "external-plugins-sync"]);
+gulp.task("release-build", ["packages", "globals", "layouts", "modules", "personal-plugins", "external-plugins-sync"]);
 
 //Main task that builds only the compilation of all the different types *no minification*
-gulp.task("debug-build", ["bower-packages", "debug-globals", "debug-layouts", "debug-modules", "debug-personal-plugins", "external-plugins-sync"]);
+gulp.task("debug-build", ["packages", "debug-globals", "debug-layouts", "debug-modules", "debug-personal-plugins", "external-plugins-sync"]);

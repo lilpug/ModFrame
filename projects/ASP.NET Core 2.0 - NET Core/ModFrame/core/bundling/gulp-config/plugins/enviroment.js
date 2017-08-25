@@ -1,10 +1,12 @@
-﻿// Holds information about the hosting environment.
+﻿var fs = require('fs');
+
+// Holds information about the hosting environment.
 var environment = {
     // Gets the current hosting environment the application is running under. This comes from the environment variables.
     current: function ()
     {
         //Loads the config file
-        var configFile = require('../../../../config/config.json');
+        var configFile = JSON.parse(fs.readFileSync(require.resolve('../../../../config/config.json'), 'utf8'));        
 
         //Gets the flag value for to tell us if we are in development or production
         return configFile.core.is_minified;

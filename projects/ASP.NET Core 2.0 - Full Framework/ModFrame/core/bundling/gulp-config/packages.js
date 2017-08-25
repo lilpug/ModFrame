@@ -40,8 +40,8 @@ gulp.task('packages', function ()
     return gulp.src([path.join("modules/**/**", pluginFile), path.join("./layouts/**", pluginFile), path.join("./modframe/global", pluginFile), path.join("./modframe/core/bundling", pluginFile)])
             .pipe(through.obj(function (chunk, enc, cb)
             {
-                //Loads the file as an object
-                var file = require(chunk.path);
+                //Loads the file as an object                
+                var file = JSON.parse(fs.readFileSync(chunk.path, 'utf8'));
 
                 if (file.bower != null && file.bower.dependencies != null) {
                     //Merges the current bower storage object with the bower dependencies
@@ -60,8 +60,8 @@ gulp.task('packages', function ()
             {
                 //Bower section
 
-                //Loads the original file
-                var bowerConfig = require(path.join("../../../..", bowerFile));
+                //Loads the original file                         
+                var bowerConfig = JSON.parse(fs.readFileSync(require.resolve(path.join("../../../..", bowerFile)), 'utf8'));
 
                 //Writes the new processed dependencies
                 bowerConfig.dependencies = bowerStorage;
@@ -71,8 +71,8 @@ gulp.task('packages', function ()
 
                 //NPM section
 
-                //Loads the original file
-                var npmConfig = require(path.join("../../../..", npmFile));
+                //Loads the original file                
+                var npmConfig = JSON.parse(fs.readFileSync(require.resolve(path.join("../../../..", npmFile)), 'utf8'));
 
                 //Writes the new processed dependencies
                 npmConfig.dependencies = npmStorage;

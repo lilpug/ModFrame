@@ -40,17 +40,52 @@ gulp.task('packages', function ()
     return gulp.src([path.join("modules/**/**", pluginFile), path.join("./layouts/**", pluginFile), path.join("./modframe/global", pluginFile), path.join("./modframe/core/bundling", pluginFile)])
             .pipe(through.obj(function (chunk, enc, cb)
             {
-                //Loads the file as an object                
-                var file = JSON.parse(fs.readFileSync(chunk.path, 'utf8'));
+                //Used to determine if everything went ok
+                var failFlag = false;
 
-                if (file.bower != null && file.bower.dependencies != null) {
-                    //Merges the current bower storage object with the bower dependencies
-                    Object.assign(bowerStorage, file.bower.dependencies);
+                //Stores the file data and json parsed data
+                var fileData = null;
+                var file = null;
+
+
+                //Checks the file data could be loaded
+                try
+                {
+                    fileData = fs.readFileSync(chunk.path, 'utf8');
+                } catch (e)
+                {
+                    failFlag = true;
+                    console.log("Error: Could not read file '" + chunk.path + "'");
                 }
 
-                if (file.npm != null && file.npm.dependencies != null) {
-                    //Merges the current bower storage object with the bower dependencies
-                    Object.assign(npmStorage, file.npm.dependencies);
+                //If the loading did not fail continue
+                if (!failFlag)
+                {
+                    //Checks its in valid json format
+                    try
+                    {
+                        file = JSON.parse(fileData);
+                    } catch (e)
+                    {
+                        failFlag = true;
+                        console.log("Error: invalid JSON in the file '" + chunk.path + "'");
+                    }
+                }
+
+                //Checks the data could be loaded and the parser function went ok before continuing
+                if (!failFlag)
+                {
+                    if (file.bower != null && file.bower.dependencies != null)
+                    {
+                        //Merges the current bower storage object with the bower dependencies
+                        Object.assign(bowerStorage, file.bower.dependencies);
+                    }
+
+                    if (file.npm != null && file.npm.dependencies != null)
+                    {
+                        //Merges the current bower storage object with the bower dependencies
+                        Object.assign(npmStorage, file.npm.dependencies);
+                    }
                 }
 
                 //Returns the chunks

@@ -10,6 +10,7 @@ var path = require("path");
 var newer = require("gulp-newer");
 var gulpif = require('gulp-if');
 var filter = require('gulp-filter');
+var pump = require('pump');
 
 //Processes the concatenation and minification of JS or CSS deppending on which is supplied 
 function CoreConAndMin(isDebug, fileLocations, compiledBaseLocation, extensionType, extraCompiled)
@@ -30,32 +31,45 @@ function CoreConAndMin(isDebug, fileLocations, compiledBaseLocation, extensionTy
     {
         extraCompiled = "";
     }
+    
+    pump([
+        gulp.src(fileLocations),
 
-    gulp.src(fileLocations)
         //If the cached file list is not different then check if anything has changed in the files before pushing them through
-        .pipe(newer(path.join(compiledBaseLocation, extraCompiled, extensionType, 'min.' + extensionType)))
-        
+        newer(path.join(compiledBaseLocation, extraCompiled, extensionType, 'min.' + extensionType)),
+
         //Processes the sass section if any sass files
-        .pipe(sassFilter)
-        .pipe(sass())
-        .pipe(sassFilter.restore)
+        sassFilter,
+        sass(),
+        sassFilter.restore,
 
         //Processes the less section if any less files
-        .pipe(lessFilter)
-        .pipe(less())
-        .pipe(lessFilter.restore)                
-
-        //Adds the files all together
-        .pipe(concat('min.' + extensionType))
+        lessFilter,
+        less(),
+        lessFilter.restore,
 
         //Checks if its js and uglifys it if so
-        .pipe(gulpif((isDebug == false && extensionType == "js"), uglify()))
+        gulpif((isDebug == false && extensionType == "js"), uglify()),
+                
 
         //Checks if its css and minifys it if so
-        .pipe(gulpif((isDebug == false && extensionType == "css"), cssmin()))
+        gulpif((isDebug == false && extensionType == "css"), cssmin()),
+
+        //Adds the files all together
+        //Note: this is after uglify as if any errors occur we can then show which file it was rather than the min.js
+        concat('min.' + extensionType),
 
         //Outputs it to the destination
-        .pipe(gulp.dest(path.join(compiledBaseLocation, extensionType, extraCompiled)));
+        gulp.dest(path.join(compiledBaseLocation, extensionType, extraCompiled))
+    ],
+    function (err)
+    {
+        //Only outputs the error if its not undefined *can happen when loading first time or after a main error as other processes follow*
+        if (err != undefined && err != null)
+        {
+            console.log("Error: " + err);
+        }
+    });
 }
 
 // Exporting the plugins main function

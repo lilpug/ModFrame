@@ -11,6 +11,7 @@ var newer = require("gulp-newer");
 var gulpif = require('gulp-if');
 var filter = require('gulp-filter');
 var pump = require('pump');
+var babel = require('gulp-babel');
 
 //Processes the concatenation and minification of JS or CSS deppending on which is supplied 
 function CoreConAndMin(isDebug, fileLocations, compiledBaseLocation, extensionType, extraCompiled)
@@ -47,10 +48,13 @@ function CoreConAndMin(isDebug, fileLocations, compiledBaseLocation, extensionTy
         lessFilter,
         less(),
         lessFilter.restore,
-
+        
+        //Checks if its js and runs the normal js through a babel check to compile any ES code into normal js
+        //Note: babel extends on its preset imports, i.e. to use es2016 you need include es2015 and es2016 presets otherwise you will only have the 1 extra function from es2016.
+        gulpif((extensionType == "js"), babel({ "presets": ["es2015", "es2016", "es2017"]})),
+        
         //Checks if its js and uglifys it if so
         gulpif((isDebug == false && extensionType == "js"), uglify()),
-                
 
         //Checks if its css and minifys it if so
         gulpif((isDebug == false && extensionType == "css"), cssmin()),

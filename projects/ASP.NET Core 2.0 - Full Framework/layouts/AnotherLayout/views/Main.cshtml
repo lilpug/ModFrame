@@ -1,6 +1,4 @@
-﻿@* This layout example was used from: http://getbootstrap.com/examples/starter-template/ *@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <title>Another Layout Template</title>
@@ -12,20 +10,22 @@
         @Html.ModFrameHeader()
     </head>
     <body>
-        @*Imports the navigation menu file*@
-        @Html.LayoutView("anotherLayout", "navigation.cshtml")
+        @* This is used to ensure the sticky footer stays at the bottom *@
+        <div class="footerWrapper">
 
-        <div class="container body-content">
-            @RenderBody()
+            @*Imports the navigation menu file*@
+            @Html.LayoutView("AnotherLayout", "navigation.cshtml")
+
+            <div class="container mt-4">
+
+                @RenderBody()
+            </div>
         </div>
 
         @*Imports the footer file*@
+        @Html.LayoutView("AnotherLayout", "footer.cshtml")
+
+        @*Imports the footer file*@
         @Html.ModFrameFooter()
-    </body>
+</body>
 </html>
-
-
-
-
-
-

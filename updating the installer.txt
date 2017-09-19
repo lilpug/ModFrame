@@ -1,17 +1,14 @@
 how to update the installer
 ---------------------------
 
-BEFORE HAND:-
-
-make sure you have done the .vstemplate update process if files have been added or removed!!
-
+Note: the build.ps1 script also generates new .vstemplates!
+Info: all the projects have been seperated out as when launching in one solution npm, bower and nuget reinstall all the
+      files being removed by the powershell script.
 
 STEPS:-
 
-load the project
+load the installer project
 
-in visual studio select the installer project in the explorer window
-
-then right click on it and select build
+right click on the project and select build
 
 *NOTE: the installer project runs the build.ps1 script before building the vsix installer*

@@ -19,6 +19,7 @@ namespace ModFrameProject
             return WebHost.CreateDefaultBuilder()
               .ConfigureAppConfiguration(ConfigConfiguration) //Changes the default configuration file path to use
               .ConfigureLogging(ConfigureLogger) //Changes the default logging configuration to load
+			  //.UseApplicationInsights()
               .UseStartup<Startup>()
               .Build();
         }

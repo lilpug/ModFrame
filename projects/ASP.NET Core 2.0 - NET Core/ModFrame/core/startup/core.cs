@@ -67,6 +67,8 @@ public static partial class ModFrame
             //Max int is basically 2gb
             x.ValueLengthLimit = int.MaxValue;
             x.MultipartBodyLengthLimit = int.MaxValue; // In case of multipart
+            x.MultipartHeadersLengthLimit = int.MaxValue;
+
         });
 
         //Adds the extra view to string Services into the pipeline so they can be dependency injected

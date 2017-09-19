@@ -1,7 +1,13 @@
-﻿body {
-    padding-top: 50px;
+﻿html, body {
+    height: 100%;
 }
 
-.body-content {
-    padding: 25px 15px;
+.footerWrapper {
+    min-height: 79.5%;
+    height: auto !important;
+    height: 100%;
+}
+
+footer i:hover {
+    color: orange;
 }

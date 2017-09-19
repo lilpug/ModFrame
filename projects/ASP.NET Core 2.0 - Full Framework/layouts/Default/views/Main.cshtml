@@ -1,37 +1,36 @@
-﻿@* This layout example was used from: http://getbootstrap.com/examples/jumbotron/ *@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>    
-    <title>Default ModFrame Layout Example</title>
-    
+<head>
+    <title>Default Layout Template</title>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    @*Imports the header file*@    
+    @*Imports the header file*@
     @Html.ModFrameHeader()
 </head>
 <body>
     @* This is used to ensure the sticky footer stays at the bottom *@
     <div class="footerWrapper">
-        @*Imports the navigation menu file*@        
-        @Html.LayoutView("default","navigation.cshtml")
 
-        <div class="container body-content">
-                @RenderBody()
+        @*Imports the navigation menu file*@
+        @Html.LayoutView("Default", "navigation.cshtml")
+
+        <div class="container mt-4">
+            @RenderBody()
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <div class="col-sm-12">
+            <div class="col-12">
                 <hr />
-                <p>&copy;@DateTime.Now.Year  (Company Name)</p>                       
+                <p>&copy;@DateTime.Now.Year  (Company Name)</p>
             </div>
         </div>
     </footer>
 
-    @*Imports the footer file*@    
+    @*Imports the footer file*@
     @Html.ModFrameFooter()
 </body>
 </html>

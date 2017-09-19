@@ -2,9 +2,9 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "jquery": "2.2.3",
-    "bootstrap": "3.3.7",
-    "Font-Awesome": "4.7.0"
+    "jquery-3.2.1": "jquery#3.2.1",
+    "bootstrap-4.0.0": "bootstrap#4.0.0-beta",
+    "Font-Awesome-4.7.0": "Font-Awesome#4.7.0"
   },
   "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
   "keywords": [

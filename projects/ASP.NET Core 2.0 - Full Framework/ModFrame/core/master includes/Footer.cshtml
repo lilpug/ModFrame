@@ -5,13 +5,13 @@
 
     @* Loops over the global footer includes *@
     @* NOTE: THIS SHOULD ALWAYS BE DONE FIRST AS ITS THE GLOBALS!!*@
-    if (Directory.Exists(System.IO.Path.Combine(root, "modframe", "global" , "includes", "footer")))
+    if (Directory.Exists(System.IO.Path.Combine(root, "ModFrame", "Global" , "includes", "footer")))
     {
-        List<string> moduleFiles = Directory.GetFiles(System.IO.Path.Combine(root, "modframe", "global" ,"includes", "footer")).ToList();
+        List<string> moduleFiles = Directory.GetFiles(System.IO.Path.Combine(root, "ModFrame", "Global" ,"includes", "footer")).ToList();
         moduleFiles.Sort();
         foreach (string file in moduleFiles)
         {
-            @Html.Partial($"~/modframe/global/includes/footer/{System.IO.Path.GetFileName(file)}");
+            @Html.Partial($"~/ModFrame/Global/includes/footer/{System.IO.Path.GetFileName(file)}");
         }
     }
 

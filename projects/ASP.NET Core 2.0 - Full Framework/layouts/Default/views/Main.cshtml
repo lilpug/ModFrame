@@ -15,7 +15,11 @@
 
         @*Imports the navigation menu file*@
         @Html.LayoutView("Default", "navigation.cshtml")
-
+        
+        <div class="container-fluid px-0">
+            <img src="~/files/layouts/Default/files/bg.png" class="img-fluid align-content-stretch" alt="Responsive image">
+        </div>
+        
         <div class="container mt-4">
             @RenderBody()
         </div>

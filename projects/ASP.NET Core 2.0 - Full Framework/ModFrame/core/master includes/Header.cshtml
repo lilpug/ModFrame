@@ -6,13 +6,13 @@
 
     @* Loops over the global header includes *@    
     @* NOTE: THIS SHOULD ALWAYS BE DONE FIRST AS ITS THE GLOBALS!!*@
-    if (Directory.Exists(System.IO.Path.Combine(root, "modframe", "global", "includes", "header")))
+    if (Directory.Exists(System.IO.Path.Combine(root, "ModFrame", "Global", "includes", "header")))
     {
-        List<string> moduleFiles = Directory.GetFiles(System.IO.Path.Combine(root, "modframe", "global", "includes", "header")).ToList();
+        List<string> moduleFiles = Directory.GetFiles(System.IO.Path.Combine(root, "ModFrame", "Global", "includes", "header")).ToList();
         moduleFiles.Sort();
         foreach (string file in moduleFiles)
         {
-            @Html.Partial($"~/modframe/global/includes/header/{System.IO.Path.GetFileName(file)}");
+            @Html.Partial($"~/ModFrame/Global/includes/header/{System.IO.Path.GetFileName(file)}");
     }
 }
 

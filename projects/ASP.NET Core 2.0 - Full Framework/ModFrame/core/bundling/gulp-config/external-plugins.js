@@ -17,7 +17,7 @@ var compiledDirectory = path.join(paths.webroot, 'components', 'extra-plugins', 
 var originalDirectory = path.join("./", 'plugins/external');
 
 //Syncs all the new files into the compiled directory
-gulp.task('external-plugins-sync', function ()
+gulp.task('MF-external-plugins-sync', function ()
 {
     //Only run if theres something to compile
     if (Exists(originalDirectory))

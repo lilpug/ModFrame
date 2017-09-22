@@ -16,7 +16,7 @@ var pluginFile = "plugins.json";
 //https://github.com/paulmillr/chokidar/issues/237
 var chokidarWatchFix = '[p]lugins.json';
 
-gulp.task('packages-watch', function ()
+gulp.task('MF-packages-watch', function ()
 {
     //Stores the directories to watch
     var watchModulePath = path.join("./modules/**/**", chokidarWatchFix);
@@ -29,15 +29,15 @@ gulp.task('packages-watch', function ()
         .on('all', function ()
         {   
             //Runs the build task
-            gulp.start(["packages"]);
+            gulp.start(["MF-packages"]);
         })
         .on('error', function () {
             //Note: it often breaks on windows when deleting a folder its watching on, so catch it so the watcher does not die and clean up.
-            gulp.start(["packages"]);
+            gulp.start(["MF-packages"]);
         });
 });
 
-gulp.task('packages', function ()
+gulp.task('MF-packages', function ()
 {
     //Stores the temp processed bower and npm packages
     var bowerStorage = new Object();

@@ -1,4 +1,4 @@
-/// <binding AfterBuild='1-run' Clean='3-clean-all' ProjectOpened='2-start-watchers' />
+/// <binding AfterBuild='1-MF-run' Clean='3-MF-clean-all' ProjectOpened='2-MF-start-watchers' />
 "use strict";
 
 var gulp = require("gulp");    

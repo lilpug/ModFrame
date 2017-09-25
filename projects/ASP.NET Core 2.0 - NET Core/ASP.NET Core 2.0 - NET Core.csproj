@@ -2,8 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>ModFrame</AssemblyName>
-    <RootNamespace>ModFrame</RootNamespace>
+    <AssemblyName>$safeprojectname$</AssemblyName>
+    <RootNamespace>$safeprojectname$</RootNamespace>
+	<!-- This is set to false as we need the .cshtml files to be outputted and not compiled into a dll on publishing -->
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,5 +16,16 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  
+    <ItemGroup>
+    <Content Update="**\plugins.json;bower.json;packages.json" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Layouts\AnotherLayout\files\" />
+    <Folder Include="Layouts\Default\files\" />
+    <Folder Include="ModFrame\Global\files\" />
+    <Folder Include="Modules\Examples\MVC\files\" />
   </ItemGroup>
 </Project>

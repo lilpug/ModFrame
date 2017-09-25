@@ -29,7 +29,7 @@ Copy-Item -Path $fullProjectDir -Recurse -Destination $tempfullProjectDir -Conta
 Copy-Item -Path $CoreProjectDir -Recurse -Destination $tempCoreProjectDir -Container
 
 # Stores all the folders and items we want to delete before making a zip file template
-$itemArray = "bin", "node_modules", "obj", "Properties", "*.user", "wwwroot\components", "wwwroot\lib\*", "wwwroot\files", "*.log", "*.csproj"
+$itemArray = "bin", "node_modules", "obj", "Properties", "*.user", "wwwroot\components", "wwwroot\lib\*", "wwwroot\files", "*.log"
 
 # Loops over all the items we want to remove from the projects
 foreach ($item in $itemArray) 
@@ -47,19 +47,22 @@ $licensePath = "$ScriptDir\LICENSE"
 Copy-Item $licensePath "$tempfullProjectDir\ModFrame"
 Copy-Item $licensePath "$tempCoreProjectDir\ModFrame"
 
+# Sets up the file exclusion lists
+[string[]]$exclude = "MyTemplate.vstemplate", "ASP.NET Core 2.0 - Full Framework.csproj", "ASP.NET Core 2.0 - NET Core.csproj", "__TemplateIcon.png"
+
 # Generates the new .vstemplate file for .NET Full Framework version
 $nameFull = "ModFrame ASP.NET Core 2.0 (Full Framework)"
 $defaultNameFull = "ModFrame"
 $targetFull = "ASP.NET Core 2.0 - Full Framework.csproj"
 $outputPathFull = "$tempfullProjectDir\MyTemplate.vstemplate"
-GenerateVSTemplate   $nameFull $nameFull $defaultNameFull $targetFull $tempfullProjectDir $outputPathFull
+GenerateVSTemplate   $nameFull $nameFull $defaultNameFull $targetFull $exclude $tempfullProjectDir $outputPathFull
 
 # Generates the new .vstemplate file for .NET Core version
 $nameCore = "ModFrame ASP.NET Core 2.0 (.NET Core)"
 $defaultNameCore = "ModFrame"
 $targetCore = "ASP.NET Core 2.0 - NET Core.csproj"
 $outputPathCore = "$tempCoreProjectDir\MyTemplate.vstemplate"
-GenerateVSTemplate   $nameCore $nameCore $defaultNameCore $targetCore $tempCoreProjectDir $outputPathCore
+GenerateVSTemplate   $nameCore $nameCore $defaultNameCore $targetCore $exclude $tempCoreProjectDir $outputPathCore
 
 # Removes the old if any and builds the full framework template zip file
 $fullOutput = "$ScriptDir\projects\Installer\ProjectTemplates\ModFrame Full.zip"

@@ -4,7 +4,8 @@
         <title>Another Layout Template</title>
 
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" href="/favicon.ico">
 
         @*Imports the header file*@
         @Html.ModFrameHeader()
@@ -17,7 +18,6 @@
             @Html.LayoutView("AnotherLayout", "navigation.cshtml")
 
             <div class="container mt-4">
-
                 @RenderBody()
             </div>
         </div>

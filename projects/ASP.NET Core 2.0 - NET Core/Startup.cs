@@ -79,12 +79,12 @@ namespace ModFrameProject
             }
             else
             {
-                app.UseExceptionHandler("~/error/status/500");
+                app.UseExceptionHandler("/error/status/500");
             }
 
             // Registers status codes against an output page if something goes wrong *i.e. 404 etc*
             // Note: found in modules/core/status codes
-            app.UseStatusCodePagesWithRedirects("~/error/status/{0}");
+            app.UseStatusCodePagesWithRedirects("/error/status/{0}");
 
             app.UseStaticFiles();
             

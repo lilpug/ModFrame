@@ -15,7 +15,19 @@ public static partial class HtmlViewExtension
     public static IHtmlContent GlobalView(this IHtmlHelper html, string viewRoute)
     {
         return html.Partial($"{ModFrame.globalBase}views/{viewRoute}");
-    }    
+    }
+
+	/// <summary>
+    /// This function returns a IHtmlContent from a specified global view
+    /// </summary>
+    /// <param name="html"></param>
+    /// <param name="viewRoute"></param>
+	/// <param name="model">optional</param>
+    /// <returns></returns>
+    public static IHtmlContent GlobalView(this IHtmlHelper html, string viewRoute, object model)
+    {
+        return html.Partial($"{ModFrame.globalBase}views/{viewRoute}", model);
+    }     
 }
 
 

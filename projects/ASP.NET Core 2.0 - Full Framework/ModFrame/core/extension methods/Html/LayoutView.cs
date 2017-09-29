@@ -12,9 +12,21 @@ public static partial class HtmlViewExtension
     /// <param name="html"></param>
     /// <param name="layoutName"></param>
     /// <param name="viewRoute"></param>
-    /// <param name="model">optional</param>
     /// <returns></returns>
-    public static IHtmlContent LayoutView(this IHtmlHelper html, string layoutName, string viewRoute, object model = null)
+    public static IHtmlContent LayoutView(this IHtmlHelper html, string layoutName, string viewRoute)
+    {
+        return html.Partial($"{ModFrame.layoutBase}/{layoutName}/views/{viewRoute}");
+    }    
+	
+	/// <summary>
+    /// This function returns a IHtmlContent from a specified layout view
+    /// </summary>
+    /// <param name="html"></param>
+    /// <param name="layoutName"></param>
+    /// <param name="viewRoute"></param>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    public static IHtmlContent LayoutView(this IHtmlHelper html, string layoutName, string viewRoute, object model)
     {
         return html.Partial($"{ModFrame.layoutBase}/{layoutName}/views/{viewRoute}", model);
     }    

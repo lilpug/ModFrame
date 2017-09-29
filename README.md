@@ -15,8 +15,6 @@ For documentation and information about ModFrame please go to the link below.
 
 https://github.com/lilpug/ModFrame/wiki
 
-**I am still writing documentation so please bear with me.**
-
 ## Copyright and License
 Copyright &copy; 2017 David Whitehead
 

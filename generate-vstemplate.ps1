@@ -50,6 +50,10 @@ function GenerateVSTemplate($name, $description, $defaultName, $target, $exclude
 				$xmlWriter.WriteString("true")
 			$xmlWriter.WriteEndElement()
 			
+			$xmlWriter.WriteStartElement('RequiredFrameworkVersion')
+				$xmlWriter.WriteString("4.5")
+			$xmlWriter.WriteEndElement()
+			
 			$xmlWriter.WriteStartElement('Name')
 				$xmlWriter.WriteString($name)
 			$xmlWriter.WriteEndElement()

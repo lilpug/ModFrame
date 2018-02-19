@@ -24,7 +24,7 @@ function CoreConAndMin(isDebug, fileLocations, compiledBaseLocation, extensionTy
     }
 
     //Creates filters to allow us to work specifically only with less and scss files if its in the css processing
-    var sassFilter = filter('**/*.scss', { restore: true });    
+    var sassFilter = filter('**/*.scss', { restore: true });
     var lessFilter = filter('**/*.less', { restore: true });
     
     //Checks if the field has been supplied if not makes it an empty string
@@ -50,8 +50,7 @@ function CoreConAndMin(isDebug, fileLocations, compiledBaseLocation, extensionTy
         lessFilter.restore,
         
         //Checks if its js and runs the normal js through a babel check to compile any ES code into normal js
-        //Note: babel extends on its preset imports, i.e. to use es2016 you need include es2015 and es2016 presets otherwise you will only have the 1 extra function from es2016.
-        gulpif((extensionType == "js"), babel({ "presets": ["es2015", "es2016", "es2017"]})),
+        gulpif((extensionType == "js"), babel({ "presets": ["@babel/preset-env"]})),
         
         //Checks if its js and uglifys it if so
         gulpif((isDebug == false && extensionType == "js"), uglify()),

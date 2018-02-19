@@ -29,7 +29,7 @@ Copy-Item -Path $fullProjectDir -Recurse -Destination $tempfullProjectDir -Conta
 Copy-Item -Path $CoreProjectDir -Recurse -Destination $tempCoreProjectDir -Container
 
 # Stores all the folders and items we want to delete before making a zip file template
-$itemArray = "bin", "node_modules", "obj", "Properties", "*.user", "wwwroot\components", "wwwroot\lib\*", "wwwroot\files", "*.log"
+$itemArray = "bin", "node_modules", "obj", "Properties", "*.user", "wwwroot\lib\*", "wwwroot\files", "*.log"
 
 # Loops over all the items we want to remove from the projects
 foreach ($item in $itemArray) 

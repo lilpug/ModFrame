@@ -1,11 +1,14 @@
 ﻿@if (ViewData["anotherLayout"] != null)
 {
     @* JQuery *@
-    <script src="~/lib/jquery-3.2.1/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
 
     @* bootstrap *@
     <script src="~/lib/popper.js/dist/umd/popper.min.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap-4.0.0/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+
+    @* fontawesome *@
+    <script src="~/lib/Font-Awesome/svg-with-js/js/fontawesome-all.min.js" asp-append-version="true"></script>
 
     @* Layout js minified *@
     <script src="~/components/layouts/AnotherLayout/js/min.js" asp-append-version="true"></script>

@@ -7,4 +7,25 @@
             </div>
         </div>
     </div>
+
+    <div class="col-12 col-md-10 col-lg-8 mt-5" id="app">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">VueJS Example</h4>
+                <p>Text Input: {{ textInput }}</p>
+
+                <form>
+                    <div class="form-group" v-cloak>
+                        <input type="text" class="form-control" v-model="textInput" v-bind:class="{ 'is-valid': IsValid, 'is-invalid': IsInvalid }">
+                        <div class="valid-feedback">
+                            {{ validMessage }}
+                        </div>
+                        <div class="invalid-feedback">
+                            {{ invalidMessage }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

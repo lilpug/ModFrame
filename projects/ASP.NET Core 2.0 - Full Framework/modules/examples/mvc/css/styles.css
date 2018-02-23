@@ -1,1 +1,4 @@
-﻿
+﻿/* Used to hide any not compiled VueJS components while they are loading */
+[v-cloak] {
+    display: none;
+}

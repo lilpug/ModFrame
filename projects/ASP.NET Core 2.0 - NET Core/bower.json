@@ -2,9 +2,12 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
+    "vuejs": "https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js",
     "jquery-3.2.1": "jquery#3.2.1",
-    "bootstrap-4.0.0": "bootstrap#4.0.0-beta",
-    "Font-Awesome-4.7.0": "Font-Awesome#4.7.0"
+    "jquery": "3.3.1",
+    "popper.js": "1.12.9",
+    "bootstrap": "4.0.0",
+    "Font-Awesome": "5.0.6"
   },
   "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
   "keywords": [

@@ -1,6 +1,7 @@
 {
   "bower": {
     "dependencies": {
+      "vuejs": "https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"
     }
   },
   "npm": {

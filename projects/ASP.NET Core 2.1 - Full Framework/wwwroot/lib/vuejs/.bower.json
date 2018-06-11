@@ -1,0 +1,13 @@
+{
+  "name": "vuejs",
+  "_cacheHeaders": {
+    "ETag": "\"151ee-IHmEbVt9JEyW203MfnWoLtwPVQU\"",
+    "Content-Length": "86510",
+    "Content-Type": "application/javascript; charset=utf-8"
+  },
+  "_release": "e-tag:151ee-IHm",
+  "main": "index.js",
+  "_source": "https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js",
+  "_target": "*",
+  "_originalSource": "https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"
+}

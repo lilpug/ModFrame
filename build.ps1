@@ -17,12 +17,12 @@ $ScriptDir = Split-Path -parent $MyInvocation.MyCommand.Path
 $temp = "$ScriptDir\temp";
 
 # Stores the project folders for the two modframe project types
-$fullProjectDir = "$ScriptDir\projects\ASP.NET Core 2.1.4 - Full Framework"
-$CoreProjectDir = "$ScriptDir\projects\ASP.NET Core 2.1.4 - NET Core"
+$fullProjectDir = "$ScriptDir\projects\ASP.NET Core 2.1 - Full Framework"
+$CoreProjectDir = "$ScriptDir\projects\ASP.NET Core 2.1 - NET Core"
 
 # Stores the temp project locations
-$tempfullProjectDir = "$temp\ASP.NET Core 2.1.4 - Full Framework"
-$tempCoreProjectDir = "$temp\ASP.NET Core 2.1.4 - NET Core"
+$tempfullProjectDir = "$temp\ASP.NET Core 2.1 - Full Framework"
+$tempCoreProjectDir = "$temp\ASP.NET Core 2.1 - NET Core"
 
 # Copies the project to the temp location so we can manipulate it without consequence
 Copy-Item -Path $fullProjectDir -Recurse -Destination $tempfullProjectDir -Container
@@ -48,19 +48,19 @@ Copy-Item $licensePath "$tempfullProjectDir\ModFrame"
 Copy-Item $licensePath "$tempCoreProjectDir\ModFrame"
 
 # Sets up the file exclusion lists
-[string[]]$exclude = "MyTemplate.vstemplate", "ASP.NET Core 2.1.4 - Full Framework.csproj", "ASP.NET Core 2.1.4 - NET Core.csproj", "__TemplateIcon.png"
+[string[]]$exclude = "MyTemplate.vstemplate", "ASP.NET Core 2.1 - Full Framework.csproj", "ASP.NET Core 2.1 - NET Core.csproj", "__TemplateIcon.png"
 
 # Generates the new .vstemplate file for .NET Full Framework version
-$nameFull = "ModFrame ASP.NET Core 2.1.4 (Full Framework)"
+$nameFull = "ModFrame ASP.NET Core 2.1 (Full Framework)"
 $defaultNameFull = "ModFrame"
-$targetFull = "ASP.NET Core 2.1.4 - Full Framework.csproj"
+$targetFull = "ASP.NET Core 2.1 - Full Framework.csproj"
 $outputPathFull = "$tempfullProjectDir\MyTemplate.vstemplate"
 GenerateVSTemplate   $nameFull $nameFull $defaultNameFull $targetFull $exclude $tempfullProjectDir $outputPathFull
 
 # Generates the new .vstemplate file for .NET Core version
-$nameCore = "ModFrame ASP.NET Core 2.1.4 (.NET Core)"
+$nameCore = "ModFrame ASP.NET Core 2.1 (.NET Core)"
 $defaultNameCore = "ModFrame"
-$targetCore = "ASP.NET Core 2.1.4 - NET Core.csproj"
+$targetCore = "ASP.NET Core 2.1 - NET Core.csproj"
 $outputPathCore = "$tempCoreProjectDir\MyTemplate.vstemplate"
 GenerateVSTemplate   $nameCore $nameCore $defaultNameCore $targetCore $exclude $tempCoreProjectDir $outputPathCore
 
